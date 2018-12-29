@@ -22,20 +22,16 @@ export class GenericCfnPipeline extends cdk.Construct {
         super(parent, name);
 
         const pipeline = new codepipeline.Pipeline(this, 'Pipeline', {
-            pipelineName: 'reinvent-trivia-game-' + props.pipelineName,
+            pipelineName: 'helloworldlambda_cdk-' + props.pipelineName,
         });
         this.pipeline = pipeline;
-
-        pipeline.addToRolePolicy(new iam.PolicyStatement()
-            .addAllResources()
-            .addActions("ecr:DescribeImages"));
 
         // Source
         const githubAccessToken = new cdk.SecretParameter(this, 'GitHubToken', { ssmParameter: 'GitHubToken' });
         const sourceAction = new codepipeline.GitHubSourceAction(this, 'GitHubSource', {
             stage: pipeline.addStage('Source'),
-            owner: 'aws-samples',
-            repo: 'aws-reinvent-2018-trivia-game',
+            owner: 'BubblesToTheLimit',
+            repo: 'helloworldlambda_cdk',
             oauthToken: githubAccessToken.value
         });
         this.sourceAction = sourceAction;
@@ -43,8 +39,8 @@ export class GenericCfnPipeline extends cdk.Construct {
         // Build
         const buildProject = new codebuild.Project(this, 'BuildProject', {
             source: new codebuild.GitHubSource({
-                owner: 'aws-samples',
-                repo: 'aws-reinvent-2018-trivia-game',
+                owner: 'BubblesToTheLimit',
+                repo: 'helloworldlambda_cdk',
                 oauthToken: githubAccessToken.value
             }),
             buildSpec: props.directory + '/buildspec.yml',
@@ -64,10 +60,6 @@ export class GenericCfnPipeline extends cdk.Construct {
         });
 
         buildProject.addToRolePolicy(new iam.PolicyStatement()
-            .addAllResources()
-            .addAction('ec2:DescribeAvailabilityZones')
-            .addAction('route53:ListHostedZonesByName'));
-        buildProject.addToRolePolicy(new iam.PolicyStatement()
             .addAction('ssm:GetParameter')
             .addResource(cdk.ArnUtils.fromComponents({
                 service: 'ssm',
@@ -76,24 +68,13 @@ export class GenericCfnPipeline extends cdk.Construct {
             })));
         buildProject.addToRolePolicy(new iam.PolicyStatement()
             .addAllResources()
-            .addActions("ecr:GetAuthorizationToken",
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:GetRepositoryPolicy",
-                "ecr:DescribeRepositories",
-                "ecr:ListImages",
-                "ecr:DescribeImages",
-                "ecr:BatchGetImage",
-                "ecr:InitiateLayerUpload",
-                "ecr:UploadLayerPart",
-                "ecr:CompleteLayerUpload",
-                "ecr:PutImage"));
+            .addActions("lambda:ListFunctions"));
         buildProject.addToRolePolicy(new iam.PolicyStatement()
             .addAction('cloudformation:DescribeStackResources')
             .addResource(cdk.ArnUtils.fromComponents({
                 service: 'cloudformation',
                 resource: 'stack',
-                resourceName: 'Trivia*'
+                resourceName: 'HelloWorld*'
             })));
 
         const buildStage = pipeline.addStage('Build');
@@ -101,8 +82,8 @@ export class GenericCfnPipeline extends cdk.Construct {
 
         // Test
         const testStage = pipeline.addStage('Test');
-        const templatePrefix =  'TriviaGame' + props.templateName;
-        const testStackName = 'TriviaGame' + props.stackName + 'Test';
+        const templatePrefix =  'HelloWorld' + props.templateName;
+        const testStackName = 'HelloWorld' + props.stackName + 'Test';
         const changeSetName = 'StagedChangeSet';
 
         new cfn.PipelineCreateReplaceChangeSetAction(this, 'PrepareChangesTest', {
@@ -123,7 +104,7 @@ export class GenericCfnPipeline extends cdk.Construct {
 
         // Prod
         const prodStage = pipeline.addStage('Prod');
-        const prodStackName = 'TriviaGame' + props.stackName + 'Prod';
+        const prodStackName = 'HelloWorld' + props.stackName + 'Prod';
 
         new cfn.PipelineCreateReplaceChangeSetAction(this, 'PrepareChanges', {
             stage: prodStage,

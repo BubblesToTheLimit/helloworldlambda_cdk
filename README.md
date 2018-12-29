@@ -1,18 +1,39 @@
-## Hello world lambda build with the CDK
+## Hello world AWS lambda function build with the CDK
+ 
+Fully matured infrastructure code in the AWS ecosystem with the example of a hello world AWS lambda function.
 
-The aim of this repository is to have a state-of-the-art infrastructure repository for a hello world function.
-
-Core information:
-* **status**: doesn't work yet, I'm still doing the initial bootstrap
-* **deployment maturity**: Continuous deployment ontop of canary and blue-green
-* **infrastructure code**: infrastructure *is* code, implemented through the CDK
-* **documentation**: Automated documentation through sphinx
+## Core information
+* **status**: incomplete, work in progress
+* **deployment maturity**: 
+  * Continuous deployment
+  * Per region first a canary, then a blue-green deployment
+  * Automated rollback on failure
+  * Meaningful notifications to code committer via Slack after successful / unsuccessful deployment
+    * Minimizes the time an engineer stares at a deployment progress bar 
+* **infrastructure code**: 
+  * Implemented through the CDK (infrastructure **is** code) 
+  * CI/CD through CodePipeline and CodeDeploy
+    * conveniently configured through the CDK
+    * gets rid of all Jenkins problems    
+  * Unit tests
+  * Follows the `DRY` principle through modularity in the CDK
+    * Enables the convenient sharing of mature deployment techniques across different infrastructure codebases, which thereby accelerates the DevOps progress 
+* **documentation**: 
+  * Automated documentation through sphinx
+  * A useful "how to contribute" section
 
 ## Deploy
 
 Install the AWS CDK CLI: `npm i -g aws-cdk`
 
 Install and build everything: `npm install && npm run build`
+
+## Contribute
+
+1. Download the repo
+2. Have it up and running in your AWS account: Follow the instructions in the [Deploy](Deploy) section
+3. Make a change to the repository and trigger a deployment
+4. Open a PR to this repository
 
 ## Credits
 

@@ -4,7 +4,7 @@ import lambda = require('@aws-cdk/aws-lambda');
 import path = require('path');
 import { ComparisonOperator } from '@aws-cdk/aws-cloudwatch';
 
-class HelloWorldLambdaInfrastructure extends cdk.Stack {
+class HelloWorldInfrastructure extends cdk.Stack {
     constructor(parent: cdk.App, name: string, props?: cdk.StackProps) {
         super(parent, name, props);
 
