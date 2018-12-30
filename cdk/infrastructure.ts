@@ -9,7 +9,7 @@ class HelloWorldInfrastructure extends cdk.Stack {
         super(parent, name, props);
 
         const myFn = new lambda.Function(this, "HelloWorldCDK", {
-            code: lambda.Code.directory(path.join(__dirname, '../app/')),
+            code: lambda.Code.asset(path.join(__dirname, '../app/')),
             handler: 'main.main',
             runtime: lambda.Runtime.Python36        
         });
