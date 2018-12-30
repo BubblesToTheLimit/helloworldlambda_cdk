@@ -3,24 +3,24 @@
 This repository features fully matured infrastructure code in the AWS ecosystem with the example of a hello world AWS lambda function.
 
 ## Core information
-* **status**: incomplete, work in progress
+* **status**: work in progress
 * **deployment maturity**: 
-  * Continuous deployment
-  * Per region first a canary, then a blue-green deployment
-  * Automated rollback on failure
-  * Meaningful notifications to code committer via Slack after successful / unsuccessful deployment
+  * [ ] Continuous deployment
+  * [ ] Per region first a canary, then a blue-green deployment
+  * [ ] Automated rollback on failure
+  * [ ] Meaningful notifications to code committer via Slack after successful / unsuccessful deployment
     * Minimizes the time an engineer stares at a deployment progress bar 
 * **infrastructure code**: 
-  * Implemented through the CDK (infrastructure **is** code) 
-  * CI/CD through CodePipeline and CodeDeploy
+  * [X] Implemented through the CDK (infrastructure **is** code) 
+  * [X] CI/CD through CodePipeline and CodeDeploy
     * conveniently configured through the CDK
     * gets rid of all Jenkins problems    
-  * Unit tests
-  * Follows the `DRY` principle through modularity in the CDK
+  * [ ] Unit tests
+  * [X] Follows the `DRY` principle through modularity in the CDK
     * Enables the convenient sharing of mature deployment techniques across different infrastructure codebases, which thereby accelerates the DevOps progress 
 * **documentation**: 
-  * Automated documentation through sphinx
-  * A useful "how to contribute" section
+  * [ ] Automated documentation through sphinx
+  * [ ] A useful "how to contribute" section
 
 ## Prep
 
