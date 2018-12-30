@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - cd static-site/cdk
+      - cd cdk
       - npm install -g npm@6.4.1
       - npm install -g aws-cdk
       - npm ci
