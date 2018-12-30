@@ -8,8 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "cdk": "cdk",
-    "synth-infra": "cdk synth -o build --app 'node cdk/infrastructure.js'",
-    "deploy-infra": "cdk deploy --app 'node cdk/infrastructure.js'"
+    "synth-infra-pipeline": "cdk synth -o build --app 'node pipelines/deploy-pipeline.js'",
+    "deploy-infra-pipeline": "cdk deploy --app 'node pipelines/deploy-pipeline.js'"
   },
   "devDependencies": {
     "@types/node": "^8.9.4",

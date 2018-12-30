@@ -22,7 +22,17 @@ This repository features fully matured infrastructure code in the AWS ecosystem 
   * Automated documentation through sphinx
   * A useful "how to contribute" section
 
+## Prep
+
+Create a GitHub personal access token with access to your fork of the repo, including "admin:repo_hook" and "repo" permissions. Then store the token in Parameter Store:
+
+`aws ssm put-parameter --name GitHubToken --type String --value 12345`
+
+Also follow these instructions if you have never accessed github from CodeBuild: https://www.itonaut.com/2018/06/18/use-github-source-in-aws-codebuild-project-using-aws-cloudformation/ 
+
 ## Deploy
+
+Create a GithubToken 
 
 Install the AWS CDK CLI: `npm i -g aws-cdk`
 
