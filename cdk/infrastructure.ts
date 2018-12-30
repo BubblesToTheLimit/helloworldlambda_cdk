@@ -31,5 +31,5 @@ class HelloWorldInfrastructure extends cdk.Stack {
 }
 
 const app = new cdk.App();
-new HelloWorldInfrastructure(app, 'TriviaGameStaticSiteInfraTest');
+new HelloWorldInfrastructure(app, 'HelloWorld');
 app.run();
