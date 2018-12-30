@@ -18,8 +18,7 @@ class HelloWorldInfrastructure extends cdk.Stack {
             metric: new cloudwatch.Metric({
                 namespace: "AWS/Lambda",
                 dimensions: {
-                    name: "FunctionName",
-                    value: myFn.functionName
+                    FunctionName: myFn.functionName
                 },
                 metricName: "Errors"
             }),  
