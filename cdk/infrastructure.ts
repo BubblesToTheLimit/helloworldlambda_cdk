@@ -30,5 +30,5 @@ class HelloWorldInfrastructure extends cdk.Stack {
 }
 
 const app = new cdk.App();
-new HelloWorldInfrastructure(app, 'HelloWorld');
+new HelloWorldInfrastructure(app, 'HelloWorldInfraTest');
 app.run();
