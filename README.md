@@ -32,8 +32,6 @@ Also follow these instructions if you have never accessed github from CodeBuild:
 
 ## Deploy
 
-Create a GithubToken 
-
 Install the AWS CDK CLI: `npm i -g aws-cdk`
 
 Install and build everything: `npm install && npm run build`
