@@ -1,6 +1,6 @@
-## Hello world AWS lambda function build with the CDK
+## Hello world AWS lambda function ontop of the CDK
  
-Fully matured infrastructure code in the AWS ecosystem with the example of a hello world AWS lambda function.
+This repository features fully matured infrastructure code in the AWS ecosystem with the example of a hello world AWS lambda function.
 
 ## Core information
 * **status**: incomplete, work in progress
